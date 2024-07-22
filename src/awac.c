@@ -17,8 +17,8 @@ const char * help_str =
 "  -o                     set the output file when finished compiling\n"
 "      OUTPUT_FILE            the file being set as the output file when -o is called\n\n"
 "  -t                     set the compile mode to \"Awatalk\"\n"
-"  -s                     set the compile mode to \"Awatisms\n"
-"  -c                     set the compile mode to \"Awobject\n\n"
+"  -s                     set the compile mode to \"Awatisms\"\n"
+"  -c                     set the compile mode to \"Awobject\"\n\n"
 "  -d                     compile with \"details\" on (only with -s or -t)\n\n"
 "  -h                     display this help and exit\n";
 
