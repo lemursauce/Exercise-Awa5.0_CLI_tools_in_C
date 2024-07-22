@@ -18,7 +18,7 @@ const char * help_str =
 "  -s                     print the running stats\n"
 "  -x                     set the maximum amount of instructions to run (to avoid infinite loops)\n"
 "      MAX_INST               the maximum amount of instructions specified\n\n"
-"  -h                     display this help and exit\n";
+"  -h                     display this help and exit";
 
 
 int main(int argc, char *argv[]) {
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
         } else if (opt == 's') {
             stats = 1;
         } else if (opt == 'h') {
-            printf(help_str);
+            puts(help_str);
             exit(EXIT_SUCCESS);
         } else {
             exit(EXIT_FAILURE);

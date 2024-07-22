@@ -20,7 +20,7 @@ const char * help_str =
 "  -s                     set the compile mode to \"Awatisms\"\n"
 "  -c                     set the compile mode to \"Awobject\"\n\n"
 "  -d                     compile with \"details\" on (only with -s or -t)\n\n"
-"  -h                     display this help and exit\n";
+"  -h                     display this help and exit";
 
 
 int main(int argc, char *argv[]) {
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
         } else if (opt == 'd') {
             detail = 1;
         } else if (opt == 'h') {
-            printf(help_str);
+            puts(help_str);
             exit(EXIT_SUCCESS);
         } else {
             exit(EXIT_FAILURE);
