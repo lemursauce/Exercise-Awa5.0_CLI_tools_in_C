@@ -19,5 +19,5 @@ all: clean $(BINS)
 .PHONY: clean _clean
 
 clean _clean:
-	rm -f *.o
+	rm -f *.o *.awa *.awasm
 	$(foreach var,$(SRCS:%.c=%), rm -f $(var))
