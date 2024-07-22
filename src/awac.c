@@ -11,7 +11,7 @@ const char * help_str =
 "Usage: %s INPUT_FILE [-t | -s | -c] [-o OUTPUT_FILE]\n\n"
 "Tool to compile an Awa5.0 file into a different format, whether that be \"Awatalk\" (.awa),\n"
 "\"Awatisms\" (.awasm, also known as \"Awasembly\"), or \"Awobject\" (.o). The output will\n"
-"be contain all the same logic as the source file but in a different format.\n\n"
+"contain all the same logic as the source file but in a different format.\n\n"
 "The following describes the usage of the various options / flags:\n"
 "  INPUT_FILE             the required Awa5.0 file to compile\n"
 "  -o                     set the output file when finished compiling\n"
@@ -20,7 +20,7 @@ const char * help_str =
 "  -s                     set the compile mode to \"Awatisms\n"
 "  -c                     set the compile mode to \"Awobject\n\n"
 "  -d                     compile with \"details\" on (only with -s or -t)\n\n"
-"  -h                     display this help and exit";
+"  -h                     display this help and exit\n";
 
 
 int main(int argc, char *argv[]) {
