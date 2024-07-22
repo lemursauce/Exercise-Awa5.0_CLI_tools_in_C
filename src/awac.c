@@ -8,7 +8,7 @@
 #include "awacompiler.h"
 
 const char * help_str = 
-"Usage: %s INPUT_FILE [-t | -s | -c] [-o OUTPUT_FILE]\n\n"
+"Usage: awac INPUT_FILE [-t | -s | -c] [-o OUTPUT_FILE]\n\n"
 "Tool to compile an Awa5.0 file into a different format, whether that be \"Awatalk\" (.awa),\n"
 "\"Awatisms\" (.awasm, also known as \"Awasembly\"), or \"Awobject\" (.o). The output will\n"
 "contain all the same logic as the source file but in a different format.\n\n"
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
         } else if (opt == 'd') {
             detail = 1;
         } else if (opt == 'h') {
-            printf(help_str, argv[0]);
+            printf(help_str);
             exit(EXIT_SUCCESS);
         } else {
             exit(EXIT_FAILURE);

@@ -8,7 +8,7 @@
 #include "awainterpreter.h"
 
 const char * help_str = 
-"Usage: %s FILE [-s] [-x MAX_INST] \n\n"
+"Usage: awai FILE [-s] [-x MAX_INST] \n\n"
 "Tool to interpret an Awa5.0 file from one of the specified formats, whether that be \"Awatalk\" (.awa),\n"
 "\"Awatisms\" (.awasm, also known as \"Awasembly\"), or \"Awobject\" (.o). The interpreter will run the\n"
 "code and take inputs / print outputs via the console. If any inputs are required, they will be taken as\n"
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
         } else if (opt == 's') {
             stats = 1;
         } else if (opt == 'h') {
-            printf(help_str, argv[0]);
+            printf(help_str);
             exit(EXIT_SUCCESS);
         } else {
             exit(EXIT_FAILURE);
