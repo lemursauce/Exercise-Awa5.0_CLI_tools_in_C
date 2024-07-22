@@ -2,6 +2,7 @@
 
 #include <string.h>
 #include <ctype.h>
+#include <stdint.h>
 
 #include "common.h"
 
@@ -114,7 +115,7 @@ int _Awatalk_getNextNBits(Parser * p, int * nonValPrev, int N, int _iscommand) {
 }
 
 void _parseAwatalk(Parser * p) {
-    ssize_t val;
+    intptr_t val;
     int nonValPrev = 1;
     if ((val = _Awatalk_getNextBit(p, &nonValPrev)) != 0) {
         _print_parser_stderr(p);
@@ -231,7 +232,7 @@ int _Awatism_parseReqWS(Parser * p) {
     return fc;
 }
 
-int _Awatism_parseNumber(Parser * p, ssize_t * hold) {
+int _Awatism_parseNumber(Parser * p, intptr_t * hold) {
     int fc = _Awatism_parseReqWS(p), firstdigit = -1, negate = 0;
     if (fc == -1) {
         _print_parser_stderr(p);
@@ -280,7 +281,7 @@ int _Awatism_parseNumber(Parser * p, ssize_t * hold) {
 }
 
 void _parseAwatism(Parser * p) {
-    ssize_t val, command;
+    intptr_t val, command;
     char buf[4];
     buf[3] = 0;
     while (1) {
@@ -296,7 +297,7 @@ void _parseAwatism(Parser * p) {
             if (reqbits) {
                 int _signed = (command == Token_blow);
                 int _tolabel = (command == Token_label);
-                ssize_t hold;
+                intptr_t hold;
                 val = _Awatism_parseNumber(p, &hold);
                 if (!_signed && hold < 0) {
                     _print_parser_stderr(p);
@@ -329,7 +330,7 @@ void _parseAwatism(Parser * p) {
 ////////
 
 void _parseAwobject(Parser * p) {
-    ssize_t val;
+    intptr_t val;
     int _command = 1, _signed = 0, _label = 0, _req = 5;
     while (1) {
         val = (unsigned char) _getc(p);

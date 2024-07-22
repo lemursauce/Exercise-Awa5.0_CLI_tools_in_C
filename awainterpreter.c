@@ -4,6 +4,7 @@
 
 #include <string.h>
 #include <ctype.h>
+#include <stdint.h>
 
 #include "vec.h"
 #include "common.h"
@@ -57,7 +58,7 @@ char * _interpreter_getline() {
 
 /////
 
-Bubble * make_singleBubble(ssize_t val) {
+Bubble * make_singleBubble(intptr_t val) {
     Bubble * b = malloc(sizeof(Bubble));
     VECTOR_INIT(b->content);
     VECTOR_PUSH(b->content, val);
@@ -105,12 +106,12 @@ void free_bubble(Bubble * b) {
     free(b);
 }
 
-void _singleBubble_set_number(Bubble * b, ssize_t val) {
+void _singleBubble_set_number(Bubble * b, intptr_t val) {
     VECTOR_SET(b->content, 0, val);
 }
 
-ssize_t _singleBubble_get_number(Bubble * b) {
-    return (ssize_t) VECTOR_GET(b->content, 0);
+intptr_t _singleBubble_get_number(Bubble * b) {
+    return (intptr_t) VECTOR_GET(b->content, 0);
 }
 
 void _print_bubble(Bubble * b) {
@@ -122,7 +123,7 @@ void _print_bubble(Bubble * b) {
         }
         putchar(']');
     } else if (VECTOR_SIZE(b->content) > 0) {
-        printf("%ld", (ssize_t) VECTOR_GET(b->content, 0));
+        printf("%ld", (intptr_t) VECTOR_GET(b->content, 0));
     }
 }
 
@@ -149,7 +150,7 @@ int _interpreter_print(Interpreter * in) {
     }
     Bubble * b = VECTOR_GET(in->bubbles->content, VECTOR_SIZE(in->bubbles->content)-1);
     if (b->isdouble) {
-        for (ssize_t i = (ssize_t) VECTOR_SIZE(b->content)-1; i >= 0; --i) {
+        for (intptr_t i = (intptr_t) VECTOR_SIZE(b->content)-1; i >= 0; --i) {
             Bubble * b2 = (Bubble*) VECTOR_GET(b->content, i);
             if (b2->isdouble) {
                 fprintf(stderr, "Cannot print double bubble within double bubble\n");
@@ -158,7 +159,7 @@ int _interpreter_print(Interpreter * in) {
                 fprintf(stderr, "\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val = _singleBubble_get_number(b2);
+            intptr_t val = _singleBubble_get_number(b2);
             if (val < 0 || AWA_SCII_len <= val) {
                 fprintf(stderr, "Tried to print character (%ld) that does not exist in AWASCII\n", val);
                 stop_interpreter(in,1);
@@ -166,7 +167,7 @@ int _interpreter_print(Interpreter * in) {
             putchar(AWA_SCII[val]);
         }
     } else {
-        ssize_t val = _singleBubble_get_number(b);
+        intptr_t val = _singleBubble_get_number(b);
         if (val < 0 || AWA_SCII_len <= val) {
             fprintf(stderr, "Tried to print character (%ld) that does not exist in AWASCII\n", val);
             stop_interpreter(in,1);
@@ -185,7 +186,7 @@ int _interpreter_print_num(Interpreter * in) {
     }
     Bubble * b = VECTOR_GET(in->bubbles->content, VECTOR_SIZE(in->bubbles->content)-1);
     if (b->isdouble) {
-        for (ssize_t i = (ssize_t) VECTOR_SIZE(b->content)-1; i >= 0; --i) {
+        for (intptr_t i = (intptr_t) VECTOR_SIZE(b->content)-1; i >= 0; --i) {
             Bubble * b2 = (Bubble*) VECTOR_GET(b->content, i);
             if (b2->isdouble) {
                 fprintf(stderr, "Cannot print double bubble within double bubble\n");
@@ -194,11 +195,11 @@ int _interpreter_print_num(Interpreter * in) {
                 fprintf(stderr, "\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val = _singleBubble_get_number(b2);
+            intptr_t val = _singleBubble_get_number(b2);
             printf("%ld ", val);
         }
     } else {
-        ssize_t val = _singleBubble_get_number(b);
+        intptr_t val = _singleBubble_get_number(b);
         printf("%ld ", val);
     }
     free_bubble(b);
@@ -208,7 +209,7 @@ int _interpreter_print_num(Interpreter * in) {
 }
 int _interpreter_read(Interpreter * in) {
     char * line;
-    ssize_t len;
+    intptr_t len;
     while (1) {
         line = _interpreter_getline();
         if (line == NULL) {
@@ -219,9 +220,9 @@ int _interpreter_read(Interpreter * in) {
         if (len > 0) break;
         else free(line);
     }
-    ssize_t c;
+    intptr_t c;
     Bubble * b = make_doubleBubble();
-    for (ssize_t i = len-1; i >= 0; --i) {
+    for (intptr_t i = len-1; i >= 0; --i) {
         c = isAWASCII(line[i]);
         if (c) VECTOR_PUSH(b->content, make_singleBubble(c));
     }
@@ -243,7 +244,7 @@ int _interpreter_read_num(Interpreter * in) {
         else free(line);
     }
     size_t i;
-    ssize_t c, prev = -1;
+    intptr_t c, prev = -1;
     int numfound = 0, neg = 0;
     for (i = 0; i < len; ++i) {
         c = line[i];
@@ -259,7 +260,7 @@ int _interpreter_read_num(Interpreter * in) {
         fprintf(stderr, "Could not find number within line\n");
         stop_interpreter(in,1);
     }
-    ssize_t val = 0;
+    intptr_t val = 0;
     for (; i < len; ++i) {
         c = line[i];
         if (!isdigit(c)) break;
@@ -270,12 +271,12 @@ int _interpreter_read_num(Interpreter * in) {
     VECTOR_PUSH(in->bubbles->content, make_singleBubble(val));
     return 1;
 }
-int _interpreter_blow(Interpreter * in, ssize_t num) {
+int _interpreter_blow(Interpreter * in, intptr_t num) {
     Bubble * b = make_singleBubble(num);
     VECTOR_PUSH(in->bubbles->content, b);
     return 1;
 }
-int _interpreter_submerge(Interpreter * in, ssize_t num) {
+int _interpreter_submerge(Interpreter * in, intptr_t num) {
     if (VECTOR_SIZE(in->bubbles->content) == 0) {
         fprintf(stderr, "Cannot call sbm when bubble abyss is empty\n");
         stop_interpreter(in,1);
@@ -288,7 +289,7 @@ int _interpreter_submerge(Interpreter * in, ssize_t num) {
     Bubble * b = VECTOR_GET(in->bubbles->content, VECTOR_SIZE(in->bubbles->content)-1);
     VECTOR_SET(in->bubbles->content, VECTOR_SIZE(in->bubbles->content)-1, 0);
     VECTOR_POP(in->bubbles->content);
-    ssize_t low = 0;
+    intptr_t low = 0;
     if (num > 0 && (size_t) num < VECTOR_SIZE(in->bubbles->content)) {
         low = VECTOR_SIZE(in->bubbles->content) - num;
     }
@@ -322,7 +323,7 @@ int _interpreter_duplicate(Interpreter * in) {
     VECTOR_PUSH(in->bubbles->content, dpl);
     return 1;
 }
-int _interpreter_surround(Interpreter * in, ssize_t num) {
+int _interpreter_surround(Interpreter * in, intptr_t num) {
     if (VECTOR_SIZE(in->bubbles->content) == 0) {
         fprintf(stderr, "Cannot call srn when bubble abyss is empty\n");
         stop_interpreter(in,1);
@@ -419,8 +420,8 @@ int _interpreter_add(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val1 = _singleBubble_get_number(temp1);
-            ssize_t val2 = _singleBubble_get_number(temp2);
+            intptr_t val1 = _singleBubble_get_number(temp1);
+            intptr_t val2 = _singleBubble_get_number(temp2);
             VECTOR_SET(temp1->content, 0, (val1+val2));
             VECTOR_PUSH(bm->content, temp1);
             VECTOR_SET(b1->content, VECTOR_SIZE(b1->content)-i, 0);
@@ -428,7 +429,7 @@ int _interpreter_add(Interpreter * in) {
     } else if (b2->isdouble) {
         // just b2 is double, b1 is single
         bm = make_doubleBubble();
-        ssize_t val = _singleBubble_get_number(b1);
+        intptr_t val = _singleBubble_get_number(b1);
         size_t len = VECTOR_SIZE(b2->content);
         if (len == 0) {
             fprintf(stderr, "Cannot add using an empty double bubble\n");
@@ -441,7 +442,7 @@ int _interpreter_add(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val2 = _singleBubble_get_number(temp);
+            intptr_t val2 = _singleBubble_get_number(temp);
             VECTOR_SET(temp->content, 0, (val+val2));
             VECTOR_PUSH(bm->content, temp);
             VECTOR_SET(b2->content, i, 0);
@@ -499,8 +500,8 @@ int _interpreter_subtract(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val1 = _singleBubble_get_number(temp1);
-            ssize_t val2 = _singleBubble_get_number(temp2);
+            intptr_t val1 = _singleBubble_get_number(temp1);
+            intptr_t val2 = _singleBubble_get_number(temp2);
             VECTOR_SET(temp1->content, 0, (val1-val2));
             VECTOR_PUSH(bm->content, temp1);
             VECTOR_SET(b1->content, VECTOR_SIZE(b1->content)-i, 0);
@@ -508,7 +509,7 @@ int _interpreter_subtract(Interpreter * in) {
     } else if (b2->isdouble) {
         // just b2 is double, b1 is single
         bm = make_doubleBubble();
-        ssize_t val = _singleBubble_get_number(b1);
+        intptr_t val = _singleBubble_get_number(b1);
         size_t len = VECTOR_SIZE(b2->content);
         if (len == 0) {
             fprintf(stderr, "Cannot add using an empty double bubble\n");
@@ -521,8 +522,8 @@ int _interpreter_subtract(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val2 = _singleBubble_get_number(temp);
-            ssize_t valm = (rev) ? (val-val2) : (val2-val);
+            intptr_t val2 = _singleBubble_get_number(temp);
+            intptr_t valm = (rev) ? (val-val2) : (val2-val);
             VECTOR_SET(temp->content, 0, valm);
             VECTOR_PUSH(bm->content, temp);
             VECTOR_SET(b2->content, i, 0);
@@ -578,8 +579,8 @@ int _interpreter_multiply(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val1 = _singleBubble_get_number(temp1);
-            ssize_t val2 = _singleBubble_get_number(temp2);
+            intptr_t val1 = _singleBubble_get_number(temp1);
+            intptr_t val2 = _singleBubble_get_number(temp2);
             VECTOR_SET(temp1->content, 0, (val1*val2));
             VECTOR_PUSH(bm->content, temp1);
             VECTOR_SET(b1->content, VECTOR_SIZE(b1->content)-i, 0);
@@ -587,7 +588,7 @@ int _interpreter_multiply(Interpreter * in) {
     } else if (b2->isdouble) {
         // just b2 is double, b1 is single
         bm = make_doubleBubble();
-        ssize_t val = _singleBubble_get_number(b1);
+        intptr_t val = _singleBubble_get_number(b1);
         size_t len = VECTOR_SIZE(b2->content);
         if (len == 0) {
             fprintf(stderr, "Cannot add using an empty double bubble\n");
@@ -600,7 +601,7 @@ int _interpreter_multiply(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val2 = _singleBubble_get_number(temp);
+            intptr_t val2 = _singleBubble_get_number(temp);
             VECTOR_SET(temp->content, 0, (val*val2));
             VECTOR_PUSH(bm->content, temp);
             VECTOR_SET(b2->content, i, 0);
@@ -660,8 +661,8 @@ int _interpreter_divide(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val1 = _singleBubble_get_number(temp1);
-            ssize_t val2 = _singleBubble_get_number(temp2);
+            intptr_t val1 = _singleBubble_get_number(temp1);
+            intptr_t val2 = _singleBubble_get_number(temp2);
             if (val2 == 0) {
                 fprintf(stderr, "Divide by 0 encountered\n");
                 stop_interpreter(in,1);
@@ -678,7 +679,7 @@ int _interpreter_divide(Interpreter * in) {
     } else if (b2->isdouble) {
         // just b2 is double, b1 is single
         bh = make_doubleBubble();
-        ssize_t val = _singleBubble_get_number(b1);
+        intptr_t val = _singleBubble_get_number(b1);
         size_t len = VECTOR_SIZE(b2->content);
         if (len == 0) {
             fprintf(stderr, "Cannot add using an empty double bubble\n");
@@ -692,15 +693,15 @@ int _interpreter_divide(Interpreter * in) {
                 fprintf(stderr, "Cannot 4dd using double bubble within double bubble\n");
                 stop_interpreter(in,1);
             }
-            ssize_t val2 = _singleBubble_get_number(temp);
+            intptr_t val2 = _singleBubble_get_number(temp);
 
             if ((rev && val2==0) || (!rev && val==0)) {
                 fprintf(stderr, "Divide by 0 encountered\n");
                 stop_interpreter(in,1);
             }
 
-            ssize_t vald = (rev) ? (val/val2) : (val2/val);
-            ssize_t valm = (rev) ? (val%val2) : (val2%val);
+            intptr_t vald = (rev) ? (val/val2) : (val2/val);
+            intptr_t valm = (rev) ? (val%val2) : (val2%val);
             bd = make_singleBubble(vald);
             bm = make_singleBubble(valm);
             free_bubble(temp);
@@ -712,7 +713,7 @@ int _interpreter_divide(Interpreter * in) {
         }
     } else {
         // both are single
-        ssize_t denom = _singleBubble_get_number(b1);
+        intptr_t denom = _singleBubble_get_number(b1);
         if (denom == 0) {
             fprintf(stderr, "Divide by 0 encountered\n");
             stop_interpreter(in,1);
@@ -745,7 +746,7 @@ int _interpreter_count(Interpreter * in) {
     }
     return 1;
 }
-int _interpreter_jump(Interpreter * in, ssize_t num) {
+int _interpreter_jump(Interpreter * in, intptr_t num) {
     if (num < 0 || 32 <= num) {
         fprintf(stderr, "invalid label index encountered\n");
         stop_interpreter(in,1);
@@ -760,10 +761,10 @@ int _interpreter_jump(Interpreter * in, ssize_t num) {
 }
 
 void _interpreter_skip_command(Interpreter * in) {
-    ssize_t com = 0;
+    intptr_t com = 0;
     if (in->i >= in->end) return;
     
-    com = (ssize_t) VECTOR_GET(in->p->tokens, in->i);
+    com = (intptr_t) VECTOR_GET(in->p->tokens, in->i);
     if (!isCommand(com)) {
         stop_interpreter(in,1);
     }
@@ -834,7 +835,7 @@ int _interpreter_greater_than(Interpreter * in) {
     return 1;
 }
 
-int run_command(Interpreter * in, ssize_t com, ssize_t num) {
+int run_command(Interpreter * in, intptr_t com, intptr_t num) {
     switch(com) {
         case (Token_no_op)        :
         case (Token_label)        : return 1;   // essentially skip command
@@ -865,10 +866,10 @@ int run_command(Interpreter * in, ssize_t com, ssize_t num) {
 /////
 
 int interpret_command(Interpreter * in) {
-    ssize_t com = 0, num = 0;
+    intptr_t com = 0, num = 0;
     if (in->i >= in->end) return 0;
     
-    com = (ssize_t) VECTOR_GET(in->p->tokens, in->i);
+    com = (intptr_t) VECTOR_GET(in->p->tokens, in->i);
     if (!isCommand(com)) {
         stop_interpreter(in,1);
     }
@@ -879,7 +880,7 @@ int interpret_command(Interpreter * in) {
         if (in->i >= in->end) {
             stop_interpreter(in,1);
         }
-        num = (ssize_t) VECTOR_GET(in->p->tokens, in->i);
+        num = (intptr_t) VECTOR_GET(in->p->tokens, in->i);
     }
 
     // run specifics of command here

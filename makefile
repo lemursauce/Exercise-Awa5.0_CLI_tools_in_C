@@ -1,5 +1,5 @@
 C=gcc
-CFLAGS=-g -pedantic
+CFLAGS=-g -pedantic -std=c99
 CFLAGDEBUG=-Wall -Wextra -Werror -fno-omit-frame-pointer -fsanitize=address,undefined
 LDLIBS=
 
