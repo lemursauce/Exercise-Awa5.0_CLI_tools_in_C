@@ -1,0 +1,47 @@
+# program: Collatz
+
+blo    1   # awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+r3d        # awa awa  wa awa awa
+
+# head of loop
+lbl   31   #  wa awa awa awa awa    wa  wa  wa  wa  wa
+
+# print value
+dpl        # awa  wa awa awa awa
+pr1        # awa awa awa  wa awa
+
+# terminate if 1 is reached
+eql        #  wa awa awa  wa awa
+trm        #  wa  wa  wa  wa  wa
+
+# arrange mod 2 info
+dpl        # awa  wa awa awa awa
+sbm    0   # awa awa  wa  wa awa   awa awa awa awa awa
+blo    2   # awa awa  wa awa  wa   awa awa awa awa awa awa  wa awa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+div        # awa  wa  wa  wa awa
+pop        # awa awa  wa  wa  wa
+sbm    2   # awa awa  wa  wa awa   awa awa awa  wa awa
+
+# branch by mode 2
+eql        #  wa awa awa  wa awa
+jmp   15   #  wa awa awa awa  wa   awa  wa  wa  wa  wa
+
+# even case: n//2
+pop        # awa awa  wa  wa  wa
+sbm    0   # awa awa  wa  wa awa   awa awa awa awa awa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+pop        # awa awa  wa  wa  wa
+jmp   31   #  wa awa awa awa  wa    wa  wa  wa  wa  wa
+
+# odd case: 3n+1
+lbl   15   #  wa awa awa awa awa   awa  wa  wa  wa  wa
+sbm    0   # awa awa  wa  wa awa   awa awa awa awa awa
+sbm    0   # awa awa  wa  wa awa   awa awa awa awa awa
+pop        # awa awa  wa  wa  wa
+dpl        # awa  wa awa awa awa
+dpl        # awa  wa awa awa awa
+4dd        # awa  wa awa  wa  wa
+4dd        # awa  wa awa  wa  wa
+4dd        # awa  wa awa  wa  wa
+jmp   31   #  wa awa awa awa  wa    wa  wa  wa  wa  wa

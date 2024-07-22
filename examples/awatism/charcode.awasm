@@ -1,0 +1,23 @@
+# program: char chode
+
+red        # awa awa awa  wa  wa
+cnt        # awa  wa  wa  wa  wa
+mrg        # awa  wa awa  wa awa
+pop        # awa awa  wa  wa  wa
+blo    1   # awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+
+lbl   31   #  wa awa awa awa awa    wa  wa  wa  wa  wa
+lss        #  wa awa awa  wa  wa
+trm        #  wa  wa  wa  wa  wa
+
+mrg        # awa  wa awa  wa awa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+pr1        # awa awa awa  wa awa
+pop        # awa awa  wa  wa  wa
+
+blo    1   # awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+sub        # awa  wa  wa awa awa
+
+jmp   31   #  wa awa awa awa  wa    wa  wa  wa  wa  wa

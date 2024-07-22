@@ -1,0 +1,49 @@
+# progr4m: Coll4tz
+
+init:    Awa
+
+blo s1:  awa awawa awawa     awa awa awa awa awa awa awawa
+r3d:     awa awawa awa awa
+
+# he4d of loop
+lbl u31: wa awa awa awa awa  wawawawawa
+
+# print v4lue
+dpl:     awawa awa awa awa
+pr1:     awa awa awawa awa
+
+# termin4te if 1
+eql:     wa awa awawa awa
+trm:     wawawawawa
+
+# 4rr4nge mod 2 info
+dpl:     awawa awa awa awa
+sbm u0:  awa awawawa awa     awa awa awa awa awa
+blo s2:  awa awawa awawa     awa awa awa awa awa awawa awa
+sbm u1:  awa awawawa awa     awa awa awa awawa
+div:     awawawawa awa
+pop:     awa awawawawa
+sbm u2:  awa awawawa awa     awa awa awawa awa
+
+# br4nch by mod 2
+eql:     wa awa awawa awa
+jmp u15: wa awa awa awawa    awawawawawa
+
+# even c4se: n//2
+pop:     awa awawawawa
+sbm u0:  awa awawawa awa     awa awa awa awa awa
+sbm u1:  awa awawawa awa     awa awa awa awawa
+pop:     awa awawawawa
+jmp u31: wa awa awa awawa    wawawawawa
+
+# odd c4se: 3n+1
+lbl u15: wa awa awa awa awa  awawawawawa
+sbm u0:  awa awawawa awa     awa awa awa awa awa
+sbm u0:  awa awawawa awa     awa awa awa awa awa
+pop:     awa awawawawa
+dpl:     awawa awa awa awa
+dpl:     awawa awa awa awa
+4dd:     awawa awawawa
+4dd:     awawa awawawa
+4dd:     awawa awawawa
+jmp u31: wa awa awa awawa    wawawawawa

@@ -1,0 +1,32 @@
+# program: fibonacci
+
+#startup
+blo 1
+dpl; dpl; dpl
+r3d
+
+#print first 1...
+blo 1
+pr1
+
+#loop head...
+lbl 31
+lss; trm
+
+#decrement then move...
+sub
+sbm 0
+dpl
+sbm 0
+sbm 0
+
+# add, print number, then move
+dpl
+sbm 2
+4dd
+sbm 0
+dpl
+pr1
+sbm 0
+
+jmp 31

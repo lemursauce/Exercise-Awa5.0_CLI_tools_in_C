@@ -1,0 +1,37 @@
+# program: reverse
+
+# read in string wth counting setup
+red        # awa awa awa  wa  wa
+cnt        # awa  wa  wa  wa  wa
+mrg        # awa  wa awa  wa awa
+pop        # awa awa  wa  wa  wa
+blo    2   # awa awa  wa awa  wa   awa awa awa awa awa awa  wa awa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+
+# loop head
+lbl   31   #  wa awa awa awa awa    wa  wa  wa  wa  wa
+lss        #  wa awa awa  wa  wa
+jmp   15   #  wa awa awa awa  wa   awa  wa  wa  wa  wa
+
+# moving counting
+mrg        # awa  wa awa  wa awa
+sbm    2   # awa awa  wa  wa awa   awa awa awa  wa awa
+
+# add to reversed substring
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+mrg        # awa  wa awa  wa awa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+pop        # awa awa  wa  wa  wa
+
+# move and decrement counting
+blo    1   # awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+sbm    1   # awa awa  wa  wa awa   awa awa awa awa  wa
+sub        # awa  wa  wa awa awa
+
+jmp   31   #  wa awa awa awa  wa    wa  wa  wa  wa  wa
+
+# print the result
+lbl   15   #  wa awa awa awa awa   awa  wa  wa  wa  wa
+pop        # awa awa  wa  wa  wa
+pop        # awa awa  wa  wa  wa
+prn        # awa awa awa awa  wa

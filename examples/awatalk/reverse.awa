@@ -1,0 +1,39 @@
+# progr4m: reverse
+
+init:     Awa
+
+# re4d in string _vv_ith counting setup
+red:      awa awa awawawa
+cnt:      awawawawawa
+mrg:      awawa awawa awa
+pop:      awa awawawawa
+blo s2:   awa awawa awawa      awa awa awa awa awa awawa awa
+sbm u1:   awa awawawa awa      awa awa awa awawa
+
+# loop head
+lbl u31:  wa awa awa awa awa   wawawawawa
+lss:      wa awa awawawa
+jmp u15:  wa awa awa awawa     awawawawawa
+
+# move counting
+mrg:      awawa awawa awa
+sbm u2:   awa awawawa awa      awa awa awawa awa
+
+# 4dd to reversed substring
+sbm u1:   awa awawawa awa      awa awa awa awawa
+mrg:      awawa awawa awa
+sbm u1:   awa awawawa awa      awa awa awa awawa
+pop:      awa awawawawa
+
+# move 4nd decrement counting
+blo s1:   awa awawa awawa      awa awa awa awa awa awa awawa
+sbm u1:   awa awawawa awa      awa awa awa awawa
+sub:      awawawa awa awa
+
+jmp u31:  wa awa awa awawa    wawawawawa
+
+# print result
+lbl u15:  wa awa awa awa awa  awawawawawa
+pop:      awa awawawawa
+pop:      awa awawawawa
+prn:      awa awa awa awawa

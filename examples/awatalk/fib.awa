@@ -1,0 +1,34 @@
+# progr4m: fibon4cci
+init:    Awa
+blo 1:   awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+dpl:     awa  wa awa awa awa
+dpl:     awa  wa awa awa awa
+dpl:     awa  wa awa awa awa
+r3d:     awa awa  wa awa awa
+
+#print first 1...
+blo 1:   awa awa  wa awa  wa   awa awa awa awa awa awa awa  wa
+pr1:     awa awa awa  wa awa
+
+#loop he4d
+lbl 31:   wa awa awa awa awa    wa  wa  wa  wa  wa
+lss:      wa awa awa  wa  wa
+trm:      wa  wa  wa  wa  wa
+
+# decrement then move
+sub:     awa  wa  wa awa awa
+sbm 0:   awa awa  wa  wa awa   awa awa awa awa awa
+dpl:     awa  wa awa awa awa
+sbm 0:   awa awa  wa  wa awa   awa awa awa awa awa
+sbm 0:   awa awa  wa  wa awa   awa awa awa awa awa
+
+# 4dd, pr1, then move
+dpl:     awa  wa awa awa awa
+sbm 2:   awa awa  wa  wa awa   awa awa awa  wa awa
+4dd:     awa  wa awa  wa  wa
+sbm 0:   awa awa  wa  wa awa   awa awa awa awa awa
+dpl:     awa  wa awa awa awa
+pr1:     awa awa awa  wa awa
+sbm 0:   awa awa  wa  wa awa   awa awa awa awa awa
+
+jmp 31:   wa awa awa awa  wa    wa  wa  wa  wa  wa

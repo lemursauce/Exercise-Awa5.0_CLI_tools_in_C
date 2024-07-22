@@ -1,0 +1,23 @@
+# program: Hello world
+
+# init:  Awa
+
+# world
+blo 38 # awa awawa awawa  	awa awawa awa awawawa awa
+blo 16 # awa awawa awawa  	awa awa awawa awa awa awa awa
+blo 41 # awa awawa awawa  	awa awawa awawa awa awawa
+blo 19 # awa awawa awawa  	awa awa awawa awa awawawa
+blo  1 # awa awawa awawa  	awa awa awa awa awa awa awawa
+
+# space
+blo 52 # awa awawa awawa  	awa awawawa awawa awa awa
+
+# Hello
+blo 19 # awa awawa awawa  	awa awa awawa awa awawawa
+blo 16 # awa awawa awawa	awa awa awawa awa awa awa awa
+dpl    # awawa awa awa awa
+blo 15 # awa awawa awawa  	awa awa awa awawawawawa
+blo  8 # awa awawa awawa  	awa awa awa awawa awa awa awa
+
+srn 11 # awa awa awa awawa  awawa awawawa
+prn    # awa awa awa awa wa
