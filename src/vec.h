@@ -1,6 +1,8 @@
 #ifndef _CUSTOM_VEC_H_
 #define _CUSTOM_VEC_H_
 
+// This is highly based on https://eddmann.com/posts/implementing-a-dynamic-vector-array-in-c/ with some slight modifications
+
 #include <stdlib.h>
 
 #define VECTOR_INIT_CAPACITY 4
