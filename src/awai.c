@@ -12,7 +12,7 @@ const char * help_str =
 "Tool to interpret an Awa5.0 file from one of the specified formats, whether that be \"Awatalk\" (.awa),\n"
 "\"Awatisms\" (.awasm, also known as \"Awasembly\"), or \"Awobject\" (.o). The interpreter will run the\n"
 "code and take inputs / print outputs via the console. If any inputs are required, they will be taken as\n"
-"specified by the original documentation\n\n"
+"specified by the original documentation.\n\n"
 "The following describes the usage of the various options / flags:\n"
 "  FILE                   the required Awa5.0 file to interpret\n"
 "  -s                     print the running stats\n"
