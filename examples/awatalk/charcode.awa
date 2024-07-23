@@ -1,24 +1,5 @@
 # progr4m: ch4r code
 
-init:     Awa
-red:      awa awa awawawa
-cnt:      awawawawawa
-mrg:      awawa awawa awa
-pop:      awa awawawawa
-blo s1:   awa awawa awawa        awa awa awa awa awa awa awa  wa
-sbm u1:   awa awawawa awa        awa awa awa awa  wa
-
-lbl u31:  wa awa awa awa awa     wawawawawa
-lss:      wa awa awawawa
-trm:      wawawawawa
-
-mrg:      awawa awawa awa
-sbm u1:   awa awawawa awa        awa awa awa awawa
-pr1:      awa awa awawa awa
-pop:      awa awawawawa
-
-blo s1:   awa awawa awawa        awa awa awa awa awa awa awawa
-sbm u1:   awa awawawa awa        awa awa awa awawa
-sub:      awawawa awa awa
-
-jmp u31:  wa awa awa awawa       wawawawawa
+init:    Awa
+red:      awa awa awa  wa  wa
+pr1:      awa awa awa  wa awa
