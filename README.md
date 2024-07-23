@@ -95,7 +95,7 @@ Some additional notes regarding this tool:
 
 As described when running `awai -h`:
 
-    Usage: ./build/awai FILE [-s] [-x MAX_INST] 
+    Usage: awai FILE [-s] [-x MAX_INST] 
 
     Tool to interpret an Awa5.0 file from one of the specified formats, whether that be "Awatalk" (.awa), "Awatisms" (.awasm, also known as "Awasembly"), or "Awobject" (.o). The interpreter will run the code and take inputs / print outputs via the console. If any inputs are required, they will be taken as specified by the original documentation.
 
@@ -116,7 +116,7 @@ Some additional notes regarding this tool:
     - The final state of the bubbleAbyss (which could be very useful for debugging your AWA5.0 code)
 * There is actually runtime error detecting!
     - This was allegedly not included in the original since "AWA5.0 is perfect" and therefore there was no need for specification on what would happen
-* Since infinite loops may be encountered, there is an optino to set a maximum amount of instructions before forced termination
+* Since infinite loops may be encountered, there is an option to set a maximum amount of instructions before forced termination
     - This is **NOT** on by default, so if you are concerned about such loops occuring, make sure to set this flag.
 
 ## Testing
