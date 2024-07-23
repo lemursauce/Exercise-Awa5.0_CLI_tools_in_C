@@ -1,0 +1,85 @@
+# program: Sieve of Eratosthenes
+# please keep the upper bound relatively small, as the amount of memory/iteration needed to calculate is somewhat atrocious
+# (e.g. 10000 runs over 11,794,216 cycles)
+
+# setup and get input
+blo 1
+r3d
+# if 1 or less, terminate early since it is pointless to consider
+gr8; jmp 31; trm
+lbl 31
+dpl; dpl
+blo 1
+sbm 1
+sub
+sbm 2
+sbm 0
+
+# loop until a list of all numbers 2 through n are created
+lbl 0
+sbm 2
+eql; jmp 1
+mrg
+dpl
+pop
+sub
+sbm 2
+pop
+sbm 1
+sbm 3
+mrg
+jmp 0
+
+# unroll contents to a useable form
+lbl 1
+4dd
+dpl
+sub
+sbm 1
+sbm 0
+mrg
+mrg
+pop
+dpl
+sbm 0
+sbm 1
+
+# upper loop head (setup and choose if iterate prime)
+lbl 2
+sbm 0
+eql; trm
+
+# setup and print smallest prime
+sbm 0
+dpl
+pr1
+
+# inner loop head (prime iteration loop)
+lbl 3
+dpl
+sbm 2
+# check if no more numbers to iterate over
+gr8; jmp 5
+sbm 1
+dpl
+sbm 2
+div
+pop
+pop
+blo 0
+
+# remove number if divisible by current prime ("keep" otherwise)
+eql; jmp 4
+pop; pop
+sbm 0
+jmp 3
+lbl 4
+pop; pop; pop
+jmp 3
+
+# remove setup from current prime and start upper loop again
+lbl 5
+pop
+sbm 0
+pop
+jmp 2
