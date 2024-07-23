@@ -320,7 +320,7 @@ void _parseAwatism(Parser * p) {
             }
             if (val == '#') {
                 _Awatism_getNextSep(p,1);
-            } else if (val != -1 && val != '\n') _Awatism_getNextSep(p,0);
+            } else if (val != -1 && val != '\n' && val != ';') _Awatism_getNextSep(p,0);
         } else if (val == '#') {
             _Awatism_getNextSep(p,1);
         }

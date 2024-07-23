@@ -12,6 +12,7 @@ void _Awatalk_compileBit(Parser * p, int bit) {
 
 void _Awatalk_compileNBits(Parser * p, intptr_t v, int N, int details) {
     if (N <= 0) return;
+    if (N != 5 && N != 8) fprintf(stderr, "WTH IS GOING ON???\n");
     intptr_t flag = ((intptr_t) 1) << (N-1);
     int first = 1;
     while (flag) {
@@ -29,30 +30,32 @@ void _compileAwatalk(Parser * p, int details) {
     fprintf(p->outFile, "Awa");
 
     intptr_t val;
-    int _command = 1, _req = 5, _withno;
+    int _withno, _req;
     for (size_t i = 0; i < VECTOR_SIZE(p->tokens); ++i) {
         val = (intptr_t) VECTOR_GET(p->tokens, i);
-        if (_command) _withno = (requiresbits(val) > 0);
-        else _withno = 0;
+        _withno = (requiresbits(val) > 0);
+        _req = 5;
 
         if (details) {
-            if (_command) {
-                fprintf(p->outFile, "\n%3s", commandToAwatism(val));
-                if (_withno) {
-                    fprintf(p->outFile, " %4ld: ", (intptr_t) VECTOR_GET(p->tokens, i+1));
-                } else {
-                    fprintf(p->outFile, ":%5s ", "");
-                }
+            fprintf(p->outFile, "\n%3s", commandToAwatism(val));
+            if (_withno) {
+                fprintf(p->outFile, " %4ld: ", (intptr_t) VECTOR_GET(p->tokens, i+1));
             } else {
-                fprintf(p->outFile, "   ");
+                fprintf(p->outFile, ":%5s ", "");
             }
         }
-        
-        _Awatalk_compileNBits(p, val, _req, details);
-        
 
-        _command = !_withno;
-        _req = (val == Token_blow) ? 8 : 5;
+        _Awatalk_compileNBits(p, val, _req, details);
+
+        if (_withno) {
+            _req = (val == Token_blow) ? 8 : 5;
+            ++i;
+            val = (intptr_t) VECTOR_GET(p->tokens, i);
+            if (details) {
+                fprintf(p->outFile, "   ");
+            }
+            _Awatalk_compileNBits(p, val, _req, details);
+        }
     }
 }
 
