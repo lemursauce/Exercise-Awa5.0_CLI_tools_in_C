@@ -5,7 +5,6 @@ As I prefer algorithmic development over other types of development, I would pro
 
 * Pseudo random number generator - a program to generate a random number (or set of random numbers) given a seed `s` (and count `n`).
 * 99 Bottles - a program that prints out the "99 Bottles of Beer" song
-* Sieve of Eratosthenes - a program to generate the primes that exist up to some bound `n`.
 * ROT13 - a program to generate the ROT13 encryption of a string (may not be possible since not all alphabetical letters are allowed in AWASCII...)
 * Quine - a program that prints its own (Awatalk) form
 * ...
