@@ -27,5 +27,12 @@ While I probably won't implement these, these do provide some potential ideas of
 
 These are things I probably should do with my GitHub Repo that I either don't have the time for or I need to research more about:
 
+* Create proper documentation
 * Implementing testing with CI/CodeCov
 * Setting a proper release w/ release version
+
+## Other
+
+* Organize code better
+    - Provide in-code documentation?
+* ...
